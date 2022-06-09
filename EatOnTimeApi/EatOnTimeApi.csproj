@@ -229,15 +229,21 @@
     <Compile Include="AUX_PARAMETER.cs">
       <DependentUpon>RDB5Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ChangeTableStatusController.cs" />
+    <Compile Include="Controllers\GetCheckController.cs" />
+    <Compile Include="Controllers\GetEmployeesController.cs" />
     <Compile Include="Controllers\GetMenuController.cs" />
     <Compile Include="Controllers\GetMenuDetailController.cs" />
     <Compile Include="Controllers\GetTableActivityController.cs" />
+    <Compile Include="Controllers\GetTableOrderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\GetTablesController.cs" />
-    <Compile Include="Controllers\tables\MenusController.cs" />
+    <Compile Include="Controllers\InsertIntoOrderController.cs" />
+    <Compile Include="Controllers\NuevoPlatilloController.cs" />
+    <Compile Include="Controllers\tables\PRODUCT_DETAILController.cs" />
+    <Compile Include="Controllers\tables\PRODUCT_IN_MENUController.cs" />
     <Compile Include="Controllers\tables\RORDERsController.cs" />
     <Compile Include="Controllers\tables\RTABLESController.cs" />
-    <Compile Include="Controllers\tables\USERS1Controller.cs" />
     <Compile Include="Controllers\tables\USERSController.cs" />
     <Compile Include="Controllers\UpdateMenuByIdController.cs" />
     <Compile Include="Controllers\ValidateLoginController.cs" />
@@ -260,18 +266,24 @@
     <Compile Include="GET_TABLE_ORDER_Result.cs">
       <DependentUpon>RDB5Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="GET_TABLE_ORDER_Result1.cs">
+      <DependentUpon>RDB5Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MENU.cs">
       <DependentUpon>RDB5Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Check.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\MenuDetail.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\TableActivity.cs" />
     <Compile Include="Models\TableDetail.cs" />
+    <Compile Include="Models\TableOrder.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="NUEVO_PLATILLO_Result.cs">
       <DependentUpon>RDB5Model.tt</DependentUpon>

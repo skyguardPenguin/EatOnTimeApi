@@ -27,7 +27,12 @@ namespace EatOnTimeApi
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
+    //    internal void VALIDATE_LOGIN(string user, string pass, ObjectParameter res, ObjectParameter role)
+    //    {
+      //      throw new NotImplementedException();
+     //   }
+
         public DbSet<AUX_PARAMETER> AUX_PARAMETER { get; set; }
         public DbSet<ERROR_LOG> ERROR_LOG { get; set; }
         public DbSet<MENU> MENU { get; set; }
@@ -199,7 +204,7 @@ namespace EatOnTimeApi
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UPDATE_NEXT_VALUE", param_nameParameter, next);
         }
     
-        public virtual int VALIDATE_LOGIN(string user, string userp, ObjectParameter result)
+        public virtual int VALIDATE_LOGIN(string user, string userp, ObjectParameter result, ObjectParameter role)
         {
             var userParameter = user != null ?
                 new ObjectParameter("user", user) :
@@ -209,9 +214,33 @@ namespace EatOnTimeApi
                 new ObjectParameter("userp", userp) :
                 new ObjectParameter("userp", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("VALIDATE_LOGIN", userParameter, userpParameter, result);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("VALIDATE_LOGIN", userParameter, userpParameter, result, role);
         }
-
-        public System.Data.Entity.DbSet<EatOnTimeApi.Models.Menu> Menus { get; set; }
+    
+        public virtual int INSERT_ORDER(Nullable<int> id, string pRODUCT_CODE, Nullable<int> qTY_PO)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var pRODUCT_CODEParameter = pRODUCT_CODE != null ?
+                new ObjectParameter("PRODUCT_CODE", pRODUCT_CODE) :
+                new ObjectParameter("PRODUCT_CODE", typeof(string));
+    
+            var qTY_POParameter = qTY_PO.HasValue ?
+                new ObjectParameter("QTY_PO", qTY_PO) :
+                new ObjectParameter("QTY_PO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("INSERT_ORDER", idParameter, pRODUCT_CODEParameter, qTY_POParameter);
+        }
+    
+        public virtual ObjectResult<GET_TABLE_ORDER_Result1> P_GET_TABLE_ORDER(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GET_TABLE_ORDER_Result1>("P_GET_TABLE_ORDER", idParameter);
+        }
     }
 }

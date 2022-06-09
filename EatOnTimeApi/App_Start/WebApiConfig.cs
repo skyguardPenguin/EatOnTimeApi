@@ -15,14 +15,17 @@ namespace EatOnTimeApi
             // Rutas de API web
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
+ 
             
+
             config.MapHttpAttributeRoutes();
-            
+  
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                  name: "DefaultApi",
+                  routeTemplate: "api/{controller}/{id}",
+                  defaults: new { id = RouteParameter.Optional }
+              );
         }
+
     }
 }

@@ -8,6 +8,7 @@ namespace EatOnTimeApi.Models
     public class Result
     {
         public string result { get; set; }
+        public string result2 { get; set; }
         public Object data { get; set; }
         public Object data1 { get; set; }
         public Object data2 { get; set; }

@@ -10,7 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using EatOnTimeApi;
-
+using Newtonsoft.Json;
 namespace EatOnTimeApi.Controllers.tables
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -21,7 +21,7 @@ namespace EatOnTimeApi.Controllers.tables
         // GET: api/USERS
         public IQueryable<USERS> GetUSERS()
         {
-            return db.USERS;
+            return  db.USERS;
         }
 
         // GET: api/USERS/5

@@ -331,6 +331,11 @@
           <Parameter Name="obj_name" Type="varchar" Mode="In" />
           <Parameter Name="date" Type="date" Mode="In" />
         </Function>
+        <Function Name="INSERT_ORDER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="PRODUCT_CODE" Type="varchar" Mode="In" />
+          <Parameter Name="QTY_PO" Type="int" Mode="In" />
+        </Function>
         <Function Name="NUEVO_PLATILLO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DESC" Type="varchar" Mode="In" />
           <Parameter Name="PRECIO" Type="float" Mode="In" />
@@ -353,6 +358,7 @@
           <Parameter Name="user" Type="varchar" Mode="In" />
           <Parameter Name="userp" Type="varchar" Mode="In" />
           <Parameter Name="result" Type="varchar" Mode="InOut" />
+          <Parameter Name="role" Type="varchar" Mode="InOut" />
         </Function>
         <EntityContainer Name="RDB5ModelStoreContainer">
           <EntitySet Name="AUX_PARAMETER" EntityType="Self.AUX_PARAMETER" Schema="dbo" store:Type="Tables" />
@@ -839,6 +845,15 @@
             <Parameter Name="user" Mode="In" Type="String" />
             <Parameter Name="userp" Mode="In" Type="String" />
             <Parameter Name="result" Mode="InOut" Type="String" />
+            <Parameter Name="role" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="INSERT_ORDER">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="PRODUCT_CODE" Mode="In" Type="String" />
+            <Parameter Name="QTY_PO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="P_GET_TABLE_ORDER" ReturnType="Collection(RDB5Model.GET_TABLE_ORDER_Result1)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="PROC_GET_TABLES_Result">
@@ -894,6 +909,15 @@
           <Property Type="Int32" Name="STATUS_ID" Nullable="false" />
           <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
           <Property Type="String" Name="PRODUCT_NAME" Nullable="false" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="GET_TABLE_ORDER_Result1">
+          <Property Type="Int32" Name="QTY_PO" Nullable="true" />
+          <Property Type="Double" Name="UNIT_PRICE" Nullable="true" />
+          <Property Type="String" Name="PRODUCT_NAME" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="ORDER_ID" Nullable="false" />
+          <Property Type="String" Name="PRODUCT_CODE" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SERVED" Nullable="true" MaxLength="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1147,6 +1171,20 @@
           <FunctionImportMapping FunctionImportName="UPDATE_MENU_BY__ID" FunctionName="RDB5Model.Store.UPDATE_MENU_BY__ID" />
           <FunctionImportMapping FunctionImportName="UPDATE_NEXT_VALUE" FunctionName="RDB5Model.Store.UPDATE_NEXT_VALUE" />
           <FunctionImportMapping FunctionImportName="VALIDATE_LOGIN" FunctionName="RDB5Model.Store.VALIDATE_LOGIN" />
+          <FunctionImportMapping FunctionImportName="INSERT_ORDER" FunctionName="RDB5Model.Store.INSERT_ORDER" />
+          <FunctionImportMapping FunctionImportName="P_GET_TABLE_ORDER" FunctionName="RDB5Model.Store.GET_TABLE_ORDER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDB5Model.GET_TABLE_ORDER_Result1">
+                <ScalarProperty Name="QTY_PO" ColumnName="QTY_PO" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="SERVED" ColumnName="SERVED" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

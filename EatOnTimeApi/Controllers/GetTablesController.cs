@@ -15,7 +15,7 @@ namespace EatOnTimeApi.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GetTablesController : ApiController
     {
-    
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public IHttpActionResult GetTables()
         {
             Result result = new Result();
