@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="419076155ed8499a99736b65f7eb3b23" Name="Diagram1">
+        <EntityTypeShape EntityType="RDB5Model.AUX_PARAMETER" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDB5Model.ERROR_LOG" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDB5Model.MENU" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDB5Model.PRODUCT_DETAIL" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDB5Model.PRODUCT_IN_MENU" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDB5Model.PRODUCT_ORDER" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDB5Model.RORDER" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDB5Model.RTABLES" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDB5Model.SESSION_PREFERENCES" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDB5Model.STATUS_DETAIL" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDB5Model.TABLE_ACTIVITY" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RDB5Model.USERS" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <AssociationConnector Association="RDB5Model.MENU_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="RDB5Model.SESSION_MENU_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="RDB5Model.PRODUCT_CODE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="RDB5Model.PRODUCT_DETAIL__STATUS_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="RDB5Model.PRODUCT_ORDER__PRODUCT_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="RDB5Model.ORDER_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="RDB5Model.STATUS_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="RDB5Model.TABLE_ACTIVITY_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="RDB5Model.FK_RTABLES__STATUS_DETAIL" ManuallyRouted="false" />
+        <AssociationConnector Association="RDB5Model.TABLE_ACTIVITY__TABLE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="RDB5Model.USER_ID_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="RDB5Model.TABLE_ACTIVITY__STATUS_DETAIL_FK" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

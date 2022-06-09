@@ -1,0 +1,1173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RDB5Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AUX_PARAMETER">
+          <Key>
+            <PropertyRef Name="AUX_PARAM_ID" />
+          </Key>
+          <Property Name="AUX_PARAM_ID" Type="int" Nullable="false" />
+          <Property Name="PARAM_CODE" Type="varchar" MaxLength="20" />
+          <Property Name="PARAM_DESC" Type="varchar" MaxLength="20" />
+          <Property Name="PARAM_VALUE" Type="varchar" MaxLength="20" />
+          <Property Name="PARAM_TEXT" Type="varchar" MaxLength="20" />
+          <Property Name="DATA1" Type="varchar" MaxLength="20" />
+          <Property Name="DATA2" Type="varchar" MaxLength="20" />
+          <Property Name="DATA3" Type="varchar" MaxLength="20" />
+          <Property Name="DATA4" Type="varchar" MaxLength="20" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="CREATED_BY" Type="int" />
+        </EntityType>
+        <EntityType Name="ERROR_LOG">
+          <Key>
+            <PropertyRef Name="ERROR_LOG_ID" />
+          </Key>
+          <Property Name="ERROR_LOG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ERROR_LOG_CODE" Type="varchar" MaxLength="20" />
+          <Property Name="ERROR_LOG_DESC" Type="varchar" MaxLength="20" />
+          <Property Name="OBJECT_NAME" Type="varchar" MaxLength="20" />
+          <Property Name="PROCEDURE_NAME_" Type="varchar" MaxLength="20" />
+          <Property Name="LINE" Type="varchar" MaxLength="20" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="CREATED_BY" Type="int" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Name="MENU_ID" Type="int" Nullable="false" />
+          <Property Name="MENU_DESC" Type="varchar" MaxLength="20" />
+          <Property Name="MENU_TITLE" Type="varchar" MaxLength="20" />
+          <Property Name="XML_MENU_DETAIL" Type="varchar" MaxLength="20" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="CREATED_BY" Type="int" />
+        </EntityType>
+        <EntityType Name="PRODUCT_DETAIL">
+          <Key>
+            <PropertyRef Name="PRODUCT_CODE" />
+          </Key>
+          <Property Name="PRODUCT_CODE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PRODUCT_DESC" Type="varchar" MaxLength="100" />
+          <Property Name="UNIT_PRICE" Type="float" />
+          <Property Name="PRODUCT_TYPE" Type="varchar" MaxLength="20" />
+          <Property Name="STATUS_ID" Type="int" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="PRODUCT_NAME" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCT_IN_MENU">
+          <Key>
+            <PropertyRef Name="PRODUCT_CODE" />
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Name="PRODUCT_CODE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MENU_ID" Type="int" Nullable="false" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="CREATED_BY" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PRODUCT_ORDER">
+          <Key>
+            <PropertyRef Name="PRODUCT_ORDER_ID" />
+          </Key>
+          <Property Name="PRODUCT_ORDER_ID" Type="int" Nullable="false" />
+          <Property Name="PRODUCT_CODE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ORDER_ID" Type="int" Nullable="false" />
+          <Property Name="SERVED" Type="varchar" MaxLength="10" />
+          <Property Name="SERVED_AT" Type="datetime" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="QTY_PO" Type="int" />
+        </EntityType>
+        <EntityType Name="RORDER">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="int" Nullable="false" />
+          <Property Name="TABLE_ACTIVITY_ID" Type="int" Nullable="false" />
+          <Property Name="STATUS_ID" Type="int" Nullable="false" />
+          <Property Name="ORDER_TOTAL" Type="float" />
+          <Property Name="ORDER_SUBTOTAL" Type="float" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="CREATED_BY" Type="int" />
+        </EntityType>
+        <EntityType Name="RTABLES">
+          <Key>
+            <PropertyRef Name="TABLE_ID" />
+          </Key>
+          <Property Name="TABLE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TABLE_CODE" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="LOCATION_DESC" Type="varchar" MaxLength="50" />
+          <Property Name="QTY_LIMIT" Type="int" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="STATUS_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="SESSION_PREFERENCES">
+          <Key>
+            <PropertyRef Name="SESSION_ID" />
+          </Key>
+          <Property Name="SESSION_ID" Type="int" Nullable="false" />
+          <Property Name="SESSION_MENU_ID" Type="int" Nullable="false" />
+          <Property Name="USER_ID_" Type="int" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="datetime" />
+        </EntityType>
+        <EntityType Name="STATUS_DETAIL">
+          <Key>
+            <PropertyRef Name="STATUS_ID" />
+          </Key>
+          <Property Name="STATUS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS_DESC" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TABLE_ACTIVITY">
+          <Key>
+            <PropertyRef Name="TABLE_ACTIVITY_ID" />
+          </Key>
+          <Property Name="TABLE_ACTIVITY_ID" Type="int" Nullable="false" />
+          <Property Name="TABLE_ID" Type="int" Nullable="false" />
+          <Property Name="STATUS_ID" Type="int" />
+          <Property Name="ORDER_TOTAL" Type="float" />
+          <Property Name="ORDER_SUB_TOTAL" Type="float" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="QTY" Type="int" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="R_USER_ID" />
+          </Key>
+          <Property Name="R_USER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="R_USER_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="USER_PASSWORD" Type="varbinary" MaxLength="50" Nullable="false" />
+          <Property Name="USER_ROLE" Type="varchar" MaxLength="50" />
+          <Property Name="CREATED_ON" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_RTABLES__STATUS_DETAIL">
+          <End Role="STATUS_DETAIL" Type="Self.STATUS_DETAIL" Multiplicity="0..1" />
+          <End Role="RTABLES" Type="Self.RTABLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS_DETAIL">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="RTABLES">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MENU_ID_FK">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
+          <End Role="PRODUCT_IN_MENU" Type="Self.PRODUCT_IN_MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="MENU_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_IN_MENU">
+              <PropertyRef Name="MENU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDER_ID_FK">
+          <End Role="RORDER" Type="Self.RORDER" Multiplicity="1" />
+          <End Role="PRODUCT_ORDER" Type="Self.PRODUCT_ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RORDER">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_ORDER">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_CODE_FK">
+          <End Role="PRODUCT_DETAIL" Type="Self.PRODUCT_DETAIL" Multiplicity="1" />
+          <End Role="PRODUCT_IN_MENU" Type="Self.PRODUCT_IN_MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT_DETAIL">
+              <PropertyRef Name="PRODUCT_CODE" />
+            </Principal>
+            <Dependent Role="PRODUCT_IN_MENU">
+              <PropertyRef Name="PRODUCT_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_DETAIL__STATUS_ID_FK">
+          <End Role="STATUS_DETAIL" Type="Self.STATUS_DETAIL" Multiplicity="1" />
+          <End Role="PRODUCT_DETAIL" Type="Self.PRODUCT_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS_DETAIL">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_DETAIL">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_ORDER__PRODUCT_FK">
+          <End Role="PRODUCT_DETAIL" Type="Self.PRODUCT_DETAIL" Multiplicity="1" />
+          <End Role="PRODUCT_ORDER" Type="Self.PRODUCT_ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT_DETAIL">
+              <PropertyRef Name="PRODUCT_CODE" />
+            </Principal>
+            <Dependent Role="PRODUCT_ORDER">
+              <PropertyRef Name="PRODUCT_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SESSION_MENU_ID_FK">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
+          <End Role="SESSION_PREFERENCES" Type="Self.SESSION_PREFERENCES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="MENU_ID" />
+            </Principal>
+            <Dependent Role="SESSION_PREFERENCES">
+              <PropertyRef Name="SESSION_MENU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STATUS_ID_FK">
+          <End Role="STATUS_DETAIL" Type="Self.STATUS_DETAIL" Multiplicity="1" />
+          <End Role="RORDER" Type="Self.RORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS_DETAIL">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="RORDER">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TABLE_ACTIVITY__STATUS_DETAIL_FK">
+          <End Role="STATUS_DETAIL" Type="Self.STATUS_DETAIL" Multiplicity="0..1" />
+          <End Role="TABLE_ACTIVITY" Type="Self.TABLE_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS_DETAIL">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="TABLE_ACTIVITY">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TABLE_ACTIVITY__TABLE_FK">
+          <End Role="RTABLES" Type="Self.RTABLES" Multiplicity="1" />
+          <End Role="TABLE_ACTIVITY" Type="Self.TABLE_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RTABLES">
+              <PropertyRef Name="TABLE_ID" />
+            </Principal>
+            <Dependent Role="TABLE_ACTIVITY">
+              <PropertyRef Name="TABLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TABLE_ACTIVITY_ID_FK">
+          <End Role="TABLE_ACTIVITY" Type="Self.TABLE_ACTIVITY" Multiplicity="1" />
+          <End Role="RORDER" Type="Self.RORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TABLE_ACTIVITY">
+              <PropertyRef Name="TABLE_ACTIVITY_ID" />
+            </Principal>
+            <Dependent Role="RORDER">
+              <PropertyRef Name="TABLE_ACTIVITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_ID_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="SESSION_PREFERENCES" Type="Self.SESSION_PREFERENCES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="R_USER_ID" />
+            </Principal>
+            <Dependent Role="SESSION_PREFERENCES">
+              <PropertyRef Name="USER_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CHANGE_TABLE_STATUS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="QTY" Type="int" Mode="In" />
+          <Parameter Name="order_id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="GET_CHECK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="out_subtotal" Type="float" Mode="InOut" />
+          <Parameter Name="out_total" Type="float" Mode="InOut" />
+        </Function>
+        <Function Name="GET_EMPLOYEES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GET_EST_TIME_BY_TABLE_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GET_MENU_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GET_MENU_DETAIL_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GET_NEXT_VALUE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="param_value" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GET_QTY_LIMIT_BY_TABLE_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GET_STATuS_DESC_BY_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="status_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GET_STATUS_ID_BY_DESC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="status_desc" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GET_TABLE_ACTIVITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GET_TABLE_ORDER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GET_TABLE_STATUS_BY_TABLE_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="INSERT_LOG_ERROR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="code" Type="varchar" Mode="In" />
+          <Parameter Name="desc" Type="varchar" Mode="In" />
+          <Parameter Name="obj_name" Type="varchar" Mode="In" />
+          <Parameter Name="date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="NUEVO_PLATILLO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DESC" Type="varchar" Mode="In" />
+          <Parameter Name="PRECIO" Type="float" Mode="In" />
+          <Parameter Name="TIPO" Type="varchar" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PROC_GET_TABLES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UPDATE_MENU_BY__ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="ID2" Type="varchar" Mode="In" />
+          <Parameter Name="DESC" Type="varchar" Mode="In" />
+          <Parameter Name="PRICE" Type="float" Mode="In" />
+          <Parameter Name="TIPO" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_NEXT_VALUE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="param_name" Type="varchar" Mode="In" />
+          <Parameter Name="next" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="VALIDATE_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user" Type="varchar" Mode="In" />
+          <Parameter Name="userp" Type="varchar" Mode="In" />
+          <Parameter Name="result" Type="varchar" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="RDB5ModelStoreContainer">
+          <EntitySet Name="AUX_PARAMETER" EntityType="Self.AUX_PARAMETER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ERROR_LOG" EntityType="Self.ERROR_LOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENU" EntityType="Self.MENU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCT_DETAIL" EntityType="Self.PRODUCT_DETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCT_IN_MENU" EntityType="Self.PRODUCT_IN_MENU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCT_ORDER" EntityType="Self.PRODUCT_ORDER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RORDER" EntityType="Self.RORDER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RTABLES" EntityType="Self.RTABLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SESSION_PREFERENCES" EntityType="Self.SESSION_PREFERENCES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATUS_DETAIL" EntityType="Self.STATUS_DETAIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TABLE_ACTIVITY" EntityType="Self.TABLE_ACTIVITY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_RTABLES__STATUS_DETAIL" Association="Self.FK_RTABLES__STATUS_DETAIL">
+            <End Role="STATUS_DETAIL" EntitySet="STATUS_DETAIL" />
+            <End Role="RTABLES" EntitySet="RTABLES" />
+          </AssociationSet>
+          <AssociationSet Name="MENU_ID_FK" Association="Self.MENU_ID_FK">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="PRODUCT_IN_MENU" EntitySet="PRODUCT_IN_MENU" />
+          </AssociationSet>
+          <AssociationSet Name="ORDER_ID_FK" Association="Self.ORDER_ID_FK">
+            <End Role="RORDER" EntitySet="RORDER" />
+            <End Role="PRODUCT_ORDER" EntitySet="PRODUCT_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_CODE_FK" Association="Self.PRODUCT_CODE_FK">
+            <End Role="PRODUCT_DETAIL" EntitySet="PRODUCT_DETAIL" />
+            <End Role="PRODUCT_IN_MENU" EntitySet="PRODUCT_IN_MENU" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_DETAIL__STATUS_ID_FK" Association="Self.PRODUCT_DETAIL__STATUS_ID_FK">
+            <End Role="STATUS_DETAIL" EntitySet="STATUS_DETAIL" />
+            <End Role="PRODUCT_DETAIL" EntitySet="PRODUCT_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_ORDER__PRODUCT_FK" Association="Self.PRODUCT_ORDER__PRODUCT_FK">
+            <End Role="PRODUCT_DETAIL" EntitySet="PRODUCT_DETAIL" />
+            <End Role="PRODUCT_ORDER" EntitySet="PRODUCT_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="SESSION_MENU_ID_FK" Association="Self.SESSION_MENU_ID_FK">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="SESSION_PREFERENCES" EntitySet="SESSION_PREFERENCES" />
+          </AssociationSet>
+          <AssociationSet Name="STATUS_ID_FK" Association="Self.STATUS_ID_FK">
+            <End Role="STATUS_DETAIL" EntitySet="STATUS_DETAIL" />
+            <End Role="RORDER" EntitySet="RORDER" />
+          </AssociationSet>
+          <AssociationSet Name="TABLE_ACTIVITY__STATUS_DETAIL_FK" Association="Self.TABLE_ACTIVITY__STATUS_DETAIL_FK">
+            <End Role="STATUS_DETAIL" EntitySet="STATUS_DETAIL" />
+            <End Role="TABLE_ACTIVITY" EntitySet="TABLE_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="TABLE_ACTIVITY__TABLE_FK" Association="Self.TABLE_ACTIVITY__TABLE_FK">
+            <End Role="RTABLES" EntitySet="RTABLES" />
+            <End Role="TABLE_ACTIVITY" EntitySet="TABLE_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="TABLE_ACTIVITY_ID_FK" Association="Self.TABLE_ACTIVITY_ID_FK">
+            <End Role="TABLE_ACTIVITY" EntitySet="TABLE_ACTIVITY" />
+            <End Role="RORDER" EntitySet="RORDER" />
+          </AssociationSet>
+          <AssociationSet Name="USER_ID_FK" Association="Self.USER_ID_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="SESSION_PREFERENCES" EntitySet="SESSION_PREFERENCES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RDB5Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AUX_PARAMETER">
+          <Key>
+            <PropertyRef Name="AUX_PARAM_ID" />
+          </Key>
+          <Property Name="AUX_PARAM_ID" Type="Int32" Nullable="false" />
+          <Property Name="PARAM_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PARAM_DESC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PARAM_VALUE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PARAM_TEXT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DATA1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DATA2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DATA3" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DATA4" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ERROR_LOG">
+          <Key>
+            <PropertyRef Name="ERROR_LOG_ID" />
+          </Key>
+          <Property Name="ERROR_LOG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ERROR_LOG_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ERROR_LOG_DESC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OBJECT_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PROCEDURE_NAME_" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LINE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Name="MENU_ID" Type="Int32" Nullable="false" />
+          <Property Name="MENU_DESC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MENU_TITLE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="XML_MENU_DETAIL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <NavigationProperty Name="PRODUCT_IN_MENU" Relationship="Self.MENU_ID_FK" FromRole="MENU" ToRole="PRODUCT_IN_MENU" />
+          <NavigationProperty Name="SESSION_PREFERENCES" Relationship="Self.SESSION_MENU_ID_FK" FromRole="MENU" ToRole="SESSION_PREFERENCES" />
+        </EntityType>
+        <EntityType Name="PRODUCT_DETAIL">
+          <Key>
+            <PropertyRef Name="PRODUCT_CODE" />
+          </Key>
+          <Property Name="PRODUCT_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRODUCT_DESC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UNIT_PRICE" Type="Double" />
+          <Property Name="PRODUCT_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_ID" Type="Int32" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PRODUCT_IN_MENU" Relationship="Self.PRODUCT_CODE_FK" FromRole="PRODUCT_DETAIL" ToRole="PRODUCT_IN_MENU" />
+          <NavigationProperty Name="STATUS_DETAIL" Relationship="Self.PRODUCT_DETAIL__STATUS_ID_FK" FromRole="PRODUCT_DETAIL" ToRole="STATUS_DETAIL" />
+          <NavigationProperty Name="PRODUCT_ORDER" Relationship="Self.PRODUCT_ORDER__PRODUCT_FK" FromRole="PRODUCT_DETAIL" ToRole="PRODUCT_ORDER" />
+          <Property Name="PRODUCT_NAME" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PRODUCT_IN_MENU">
+          <Key>
+            <PropertyRef Name="PRODUCT_CODE" />
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Name="PRODUCT_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MENU_ID" Type="Int32" Nullable="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MENU" Relationship="Self.MENU_ID_FK" FromRole="PRODUCT_IN_MENU" ToRole="MENU" />
+          <NavigationProperty Name="PRODUCT_DETAIL" Relationship="Self.PRODUCT_CODE_FK" FromRole="PRODUCT_IN_MENU" ToRole="PRODUCT_DETAIL" />
+        </EntityType>
+        <EntityType Name="PRODUCT_ORDER">
+          <Key>
+            <PropertyRef Name="PRODUCT_ORDER_ID" />
+          </Key>
+          <Property Name="PRODUCT_ORDER_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRODUCT_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ORDER_ID" Type="Int32" Nullable="false" />
+          <Property Name="SERVED" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SERVED_AT" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PRODUCT_DETAIL" Relationship="Self.PRODUCT_ORDER__PRODUCT_FK" FromRole="PRODUCT_ORDER" ToRole="PRODUCT_DETAIL" />
+          <NavigationProperty Name="RORDER" Relationship="Self.ORDER_ID_FK" FromRole="PRODUCT_ORDER" ToRole="RORDER" />
+          <Property Name="QTY_PO" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RORDER">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="ORDER_ID" Type="Int32" Nullable="false" />
+          <Property Name="TABLE_ACTIVITY_ID" Type="Int32" Nullable="false" />
+          <Property Name="STATUS_ID" Type="Int32" Nullable="false" />
+          <Property Name="ORDER_TOTAL" Type="Double" />
+          <Property Name="ORDER_SUBTOTAL" Type="Double" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_BY" Type="Int32" />
+          <NavigationProperty Name="PRODUCT_ORDER" Relationship="Self.ORDER_ID_FK" FromRole="RORDER" ToRole="PRODUCT_ORDER" />
+          <NavigationProperty Name="STATUS_DETAIL" Relationship="Self.STATUS_ID_FK" FromRole="RORDER" ToRole="STATUS_DETAIL" />
+          <NavigationProperty Name="TABLE_ACTIVITY" Relationship="Self.TABLE_ACTIVITY_ID_FK" FromRole="RORDER" ToRole="TABLE_ACTIVITY" />
+        </EntityType>
+        <EntityType Name="RTABLES">
+          <Key>
+            <PropertyRef Name="TABLE_ID" />
+          </Key>
+          <Property Name="TABLE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TABLE_CODE" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="LOCATION_DESC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="QTY_LIMIT" Type="Int32" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="STATUS_ID" Type="Int32" />
+          <NavigationProperty Name="STATUS_DETAIL" Relationship="Self.FK_RTABLES__STATUS_DETAIL" FromRole="RTABLES" ToRole="STATUS_DETAIL" />
+          <NavigationProperty Name="TABLE_ACTIVITY" Relationship="Self.TABLE_ACTIVITY__TABLE_FK" FromRole="RTABLES" ToRole="TABLE_ACTIVITY" />
+        </EntityType>
+        <EntityType Name="SESSION_PREFERENCES">
+          <Key>
+            <PropertyRef Name="SESSION_ID" />
+          </Key>
+          <Property Name="SESSION_ID" Type="Int32" Nullable="false" />
+          <Property Name="SESSION_MENU_ID" Type="Int32" Nullable="false" />
+          <Property Name="USER_ID_" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_ON" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MENU" Relationship="Self.SESSION_MENU_ID_FK" FromRole="SESSION_PREFERENCES" ToRole="MENU" />
+          <NavigationProperty Name="USERS" Relationship="Self.USER_ID_FK" FromRole="SESSION_PREFERENCES" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="STATUS_DETAIL">
+          <Key>
+            <PropertyRef Name="STATUS_ID" />
+          </Key>
+          <Property Name="STATUS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS_DESC" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PRODUCT_DETAIL" Relationship="Self.PRODUCT_DETAIL__STATUS_ID_FK" FromRole="STATUS_DETAIL" ToRole="PRODUCT_DETAIL" />
+          <NavigationProperty Name="RORDER" Relationship="Self.STATUS_ID_FK" FromRole="STATUS_DETAIL" ToRole="RORDER" />
+          <NavigationProperty Name="RTABLES" Relationship="Self.FK_RTABLES__STATUS_DETAIL" FromRole="STATUS_DETAIL" ToRole="RTABLES" />
+          <NavigationProperty Name="TABLE_ACTIVITY" Relationship="Self.TABLE_ACTIVITY__STATUS_DETAIL_FK" FromRole="STATUS_DETAIL" ToRole="TABLE_ACTIVITY" />
+        </EntityType>
+        <EntityType Name="TABLE_ACTIVITY">
+          <Key>
+            <PropertyRef Name="TABLE_ACTIVITY_ID" />
+          </Key>
+          <Property Name="TABLE_ACTIVITY_ID" Type="Int32" Nullable="false" />
+          <Property Name="TABLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="STATUS_ID" Type="Int32" />
+          <Property Name="ORDER_TOTAL" Type="Double" />
+          <Property Name="ORDER_SUB_TOTAL" Type="Double" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="RORDER" Relationship="Self.TABLE_ACTIVITY_ID_FK" FromRole="TABLE_ACTIVITY" ToRole="RORDER" />
+          <NavigationProperty Name="RTABLES" Relationship="Self.TABLE_ACTIVITY__TABLE_FK" FromRole="TABLE_ACTIVITY" ToRole="RTABLES" />
+          <NavigationProperty Name="STATUS_DETAIL" Relationship="Self.TABLE_ACTIVITY__STATUS_DETAIL_FK" FromRole="TABLE_ACTIVITY" ToRole="STATUS_DETAIL" />
+          <Property Name="QTY" Type="Int32" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="R_USER_ID" />
+          </Key>
+          <Property Name="R_USER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="R_USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USER_PASSWORD" Type="Binary" MaxLength="50" FixedLength="false" Nullable="false" />
+          <Property Name="USER_ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SESSION_PREFERENCES" Relationship="Self.USER_ID_FK" FromRole="USERS" ToRole="SESSION_PREFERENCES" />
+        </EntityType>
+        <Association Name="MENU_ID_FK">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
+          <End Role="PRODUCT_IN_MENU" Type="Self.PRODUCT_IN_MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="MENU_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_IN_MENU">
+              <PropertyRef Name="MENU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SESSION_MENU_ID_FK">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="1" />
+          <End Role="SESSION_PREFERENCES" Type="Self.SESSION_PREFERENCES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="MENU_ID" />
+            </Principal>
+            <Dependent Role="SESSION_PREFERENCES">
+              <PropertyRef Name="SESSION_MENU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_CODE_FK">
+          <End Role="PRODUCT_DETAIL" Type="Self.PRODUCT_DETAIL" Multiplicity="1" />
+          <End Role="PRODUCT_IN_MENU" Type="Self.PRODUCT_IN_MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT_DETAIL">
+              <PropertyRef Name="PRODUCT_CODE" />
+            </Principal>
+            <Dependent Role="PRODUCT_IN_MENU">
+              <PropertyRef Name="PRODUCT_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_DETAIL__STATUS_ID_FK">
+          <End Role="STATUS_DETAIL" Type="Self.STATUS_DETAIL" Multiplicity="1" />
+          <End Role="PRODUCT_DETAIL" Type="Self.PRODUCT_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS_DETAIL">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_DETAIL">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_ORDER__PRODUCT_FK">
+          <End Role="PRODUCT_DETAIL" Type="Self.PRODUCT_DETAIL" Multiplicity="1" />
+          <End Role="PRODUCT_ORDER" Type="Self.PRODUCT_ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT_DETAIL">
+              <PropertyRef Name="PRODUCT_CODE" />
+            </Principal>
+            <Dependent Role="PRODUCT_ORDER">
+              <PropertyRef Name="PRODUCT_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ORDER_ID_FK">
+          <End Role="RORDER" Type="Self.RORDER" Multiplicity="1" />
+          <End Role="PRODUCT_ORDER" Type="Self.PRODUCT_ORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RORDER">
+              <PropertyRef Name="ORDER_ID" />
+            </Principal>
+            <Dependent Role="PRODUCT_ORDER">
+              <PropertyRef Name="ORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="STATUS_ID_FK">
+          <End Role="STATUS_DETAIL" Type="Self.STATUS_DETAIL" Multiplicity="1" />
+          <End Role="RORDER" Type="Self.RORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS_DETAIL">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="RORDER">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TABLE_ACTIVITY_ID_FK">
+          <End Role="TABLE_ACTIVITY" Type="Self.TABLE_ACTIVITY" Multiplicity="1" />
+          <End Role="RORDER" Type="Self.RORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TABLE_ACTIVITY">
+              <PropertyRef Name="TABLE_ACTIVITY_ID" />
+            </Principal>
+            <Dependent Role="RORDER">
+              <PropertyRef Name="TABLE_ACTIVITY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RTABLES__STATUS_DETAIL">
+          <End Role="STATUS_DETAIL" Type="Self.STATUS_DETAIL" Multiplicity="0..1" />
+          <End Role="RTABLES" Type="Self.RTABLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS_DETAIL">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="RTABLES">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TABLE_ACTIVITY__TABLE_FK">
+          <End Role="RTABLES" Type="Self.RTABLES" Multiplicity="1" />
+          <End Role="TABLE_ACTIVITY" Type="Self.TABLE_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RTABLES">
+              <PropertyRef Name="TABLE_ID" />
+            </Principal>
+            <Dependent Role="TABLE_ACTIVITY">
+              <PropertyRef Name="TABLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="USER_ID_FK">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+          <End Role="SESSION_PREFERENCES" Type="Self.SESSION_PREFERENCES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="R_USER_ID" />
+            </Principal>
+            <Dependent Role="SESSION_PREFERENCES">
+              <PropertyRef Name="USER_ID_" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TABLE_ACTIVITY__STATUS_DETAIL_FK">
+          <End Role="STATUS_DETAIL" Type="Self.STATUS_DETAIL" Multiplicity="0..1" />
+          <End Role="TABLE_ACTIVITY" Type="Self.TABLE_ACTIVITY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS_DETAIL">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="TABLE_ACTIVITY">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RDB5Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AUX_PARAMETER" EntityType="Self.AUX_PARAMETER" />
+          <EntitySet Name="ERROR_LOG" EntityType="Self.ERROR_LOG" />
+          <EntitySet Name="MENU" EntityType="Self.MENU" />
+          <EntitySet Name="PRODUCT_DETAIL" EntityType="Self.PRODUCT_DETAIL" />
+          <EntitySet Name="PRODUCT_IN_MENU" EntityType="Self.PRODUCT_IN_MENU" />
+          <EntitySet Name="PRODUCT_ORDER" EntityType="Self.PRODUCT_ORDER" />
+          <EntitySet Name="RORDER" EntityType="Self.RORDER" />
+          <EntitySet Name="RTABLES" EntityType="Self.RTABLES" />
+          <EntitySet Name="SESSION_PREFERENCES" EntityType="Self.SESSION_PREFERENCES" />
+          <EntitySet Name="STATUS_DETAIL" EntityType="Self.STATUS_DETAIL" />
+          <EntitySet Name="TABLE_ACTIVITY" EntityType="Self.TABLE_ACTIVITY" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" />
+          <AssociationSet Name="MENU_ID_FK" Association="Self.MENU_ID_FK">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="PRODUCT_IN_MENU" EntitySet="PRODUCT_IN_MENU" />
+          </AssociationSet>
+          <AssociationSet Name="SESSION_MENU_ID_FK" Association="Self.SESSION_MENU_ID_FK">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="SESSION_PREFERENCES" EntitySet="SESSION_PREFERENCES" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_CODE_FK" Association="Self.PRODUCT_CODE_FK">
+            <End Role="PRODUCT_DETAIL" EntitySet="PRODUCT_DETAIL" />
+            <End Role="PRODUCT_IN_MENU" EntitySet="PRODUCT_IN_MENU" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_DETAIL__STATUS_ID_FK" Association="Self.PRODUCT_DETAIL__STATUS_ID_FK">
+            <End Role="STATUS_DETAIL" EntitySet="STATUS_DETAIL" />
+            <End Role="PRODUCT_DETAIL" EntitySet="PRODUCT_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_ORDER__PRODUCT_FK" Association="Self.PRODUCT_ORDER__PRODUCT_FK">
+            <End Role="PRODUCT_DETAIL" EntitySet="PRODUCT_DETAIL" />
+            <End Role="PRODUCT_ORDER" EntitySet="PRODUCT_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="ORDER_ID_FK" Association="Self.ORDER_ID_FK">
+            <End Role="RORDER" EntitySet="RORDER" />
+            <End Role="PRODUCT_ORDER" EntitySet="PRODUCT_ORDER" />
+          </AssociationSet>
+          <AssociationSet Name="STATUS_ID_FK" Association="Self.STATUS_ID_FK">
+            <End Role="STATUS_DETAIL" EntitySet="STATUS_DETAIL" />
+            <End Role="RORDER" EntitySet="RORDER" />
+          </AssociationSet>
+          <AssociationSet Name="TABLE_ACTIVITY_ID_FK" Association="Self.TABLE_ACTIVITY_ID_FK">
+            <End Role="TABLE_ACTIVITY" EntitySet="TABLE_ACTIVITY" />
+            <End Role="RORDER" EntitySet="RORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RTABLES__STATUS_DETAIL" Association="Self.FK_RTABLES__STATUS_DETAIL">
+            <End Role="STATUS_DETAIL" EntitySet="STATUS_DETAIL" />
+            <End Role="RTABLES" EntitySet="RTABLES" />
+          </AssociationSet>
+          <AssociationSet Name="TABLE_ACTIVITY__TABLE_FK" Association="Self.TABLE_ACTIVITY__TABLE_FK">
+            <End Role="RTABLES" EntitySet="RTABLES" />
+            <End Role="TABLE_ACTIVITY" EntitySet="TABLE_ACTIVITY" />
+          </AssociationSet>
+          <AssociationSet Name="USER_ID_FK" Association="Self.USER_ID_FK">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="SESSION_PREFERENCES" EntitySet="SESSION_PREFERENCES" />
+          </AssociationSet>
+          <AssociationSet Name="TABLE_ACTIVITY__STATUS_DETAIL_FK" Association="Self.TABLE_ACTIVITY__STATUS_DETAIL_FK">
+            <End Role="STATUS_DETAIL" EntitySet="STATUS_DETAIL" />
+            <End Role="TABLE_ACTIVITY" EntitySet="TABLE_ACTIVITY" />
+          </AssociationSet>
+          <FunctionImport Name="INSERT_LOG_ERROR">
+            <Parameter Name="code" Mode="In" Type="String" />
+            <Parameter Name="desc" Mode="In" Type="String" />
+            <Parameter Name="obj_name" Mode="In" Type="String" />
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_GET_TABLES" ReturnType="Collection(RDB5Model.PROC_GET_TABLES_Result)" />
+          <FunctionImport Name="API_PROC_GET_TABLES" ReturnType="Collection(RDB5Model.API_PROC_GET_TABLES_Result)" />
+          <FunctionImport Name="GET_MENU_BY_ID" ReturnType="Collection(RDB5Model.GET_MENU_BY_ID_Result)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GET_MENU_DETAIL_BY_ID" ReturnType="Collection(RDB5Model.GET_MENU_DETAIL_BY_ID_Result)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GET_TABLE_ACTIVITY" ReturnType="Collection(RDB5Model.GET_TABLE_ACTIVITY_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="API_GET_MENU_BY_ID" ReturnType="Collection(RDB5Model.GET_MENU_BY_ID_Result)">
+          <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GET_CHECK">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="out_subtotal" Mode="InOut" Type="Double" />
+            <Parameter Name="out_total" Mode="InOut" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="CHANGE_TABLE_STATUS">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="QTY" Mode="In" Type="Int32" />
+            <Parameter Name="order_id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GET_EMPLOYEES" ReturnType="Collection(RDB5Model.GET_EMPLOYEES_Result)" />
+          <FunctionImport Name="GET_TABLE_ORDER" ReturnType="Collection(RDB5Model.GET_TABLE_ORDER_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="NUEVO_PLATILLO" ReturnType="Collection(RDB5Model.NUEVO_PLATILLO_Result)">
+            <Parameter Name="DESC" Mode="In" Type="String" />
+            <Parameter Name="PRECIO" Mode="In" Type="Double" />
+            <Parameter Name="TIPO" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_MENU_BY__ID">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="ID2" Mode="In" Type="String" />
+            <Parameter Name="DESC" Mode="In" Type="String" />
+            <Parameter Name="PRICE" Mode="In" Type="Double" />
+            <Parameter Name="TIPO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UPDATE_NEXT_VALUE">
+            <Parameter Name="param_name" Mode="In" Type="String" />
+            <Parameter Name="next" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="VALIDATE_LOGIN">
+            <Parameter Name="user" Mode="In" Type="String" />
+            <Parameter Name="userp" Mode="In" Type="String" />
+            <Parameter Name="result" Mode="InOut" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="PROC_GET_TABLES_Result">
+          <Property Type="Int32" Name="TABLE_ID" Nullable="false" />
+          <Property Type="Int32" Name="QTY_LIMIT" Nullable="true" />
+          <Property Type="String" Name="TABLE_STATUS" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="EST_TIME" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="API_PROC_GET_TABLES_Result">
+          <Property Type="Int32" Name="TABLE_ID" Nullable="false" />
+          <Property Type="Int32" Name="QTY_LIMIT" Nullable="true" />
+          <Property Type="String" Name="TABLE_STATUS" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="EST_TIME" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="GET_MENU_BY_ID_Result">
+          <Property Type="String" Name="MENU_TITLE" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="MENU_ID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GET_MENU_DETAIL_BY_ID_Result">
+          <Property Type="String" Name="PRODUCT_CODE" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="PRODUCT_TYPE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PRODUCT_NAME" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="PRODUCT_DESC" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GET_TABLE_ACTIVITY_Result">
+          <Property Type="String" Name="STATUS" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="QTY" Nullable="true" />
+          <Property Type="DateTime" Name="START_TIME" Nullable="true" Precision="23" />
+          <Property Type="String" Name="EST_TIME" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="GET_EMPLOYEES_Result">
+          <Property Type="Int32" Name="R_USER_ID" Nullable="false" />
+          <Property Type="String" Name="R_USER_NAME" Nullable="false" MaxLength="50" />
+          <Property Type="Binary" Name="USER_PASSWORD" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="USER_ROLE" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="GET_TABLE_ORDER_Result">
+          <Property Type="Int32" Name="QTY_PO" Nullable="true" />
+          <Property Type="Double" Name="UNIT_PRICE" Nullable="true" />
+          <Property Type="String" Name="PRODUCT_NAME" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="ORDER_ID" Nullable="false" />
+          <Property Type="Int32" Name="ORDER_ID1" Nullable="false" />
+          <Property Type="String" Name="PRODUCT_CODE" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SERVED" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="NUEVO_PLATILLO_Result">
+          <Property Type="String" Name="PRODUCT_CODE" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="PRODUCT_DESC" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="UNIT_PRICE" Nullable="true" />
+          <Property Type="String" Name="PRODUCT_TYPE" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="STATUS_ID" Nullable="false" />
+          <Property Type="DateTime" Name="CREATED_ON" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PRODUCT_NAME" Nullable="false" MaxLength="20" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RDB5ModelStoreContainer" CdmEntityContainer="RDB5Entities">
+          <EntitySetMapping Name="AUX_PARAMETER">
+            <EntityTypeMapping TypeName="RDB5Model.AUX_PARAMETER">
+              <MappingFragment StoreEntitySet="AUX_PARAMETER">
+                <ScalarProperty Name="AUX_PARAM_ID" ColumnName="AUX_PARAM_ID" />
+                <ScalarProperty Name="PARAM_CODE" ColumnName="PARAM_CODE" />
+                <ScalarProperty Name="PARAM_DESC" ColumnName="PARAM_DESC" />
+                <ScalarProperty Name="PARAM_VALUE" ColumnName="PARAM_VALUE" />
+                <ScalarProperty Name="PARAM_TEXT" ColumnName="PARAM_TEXT" />
+                <ScalarProperty Name="DATA1" ColumnName="DATA1" />
+                <ScalarProperty Name="DATA2" ColumnName="DATA2" />
+                <ScalarProperty Name="DATA3" ColumnName="DATA3" />
+                <ScalarProperty Name="DATA4" ColumnName="DATA4" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ERROR_LOG">
+            <EntityTypeMapping TypeName="RDB5Model.ERROR_LOG">
+              <MappingFragment StoreEntitySet="ERROR_LOG">
+                <ScalarProperty Name="ERROR_LOG_ID" ColumnName="ERROR_LOG_ID" />
+                <ScalarProperty Name="ERROR_LOG_CODE" ColumnName="ERROR_LOG_CODE" />
+                <ScalarProperty Name="ERROR_LOG_DESC" ColumnName="ERROR_LOG_DESC" />
+                <ScalarProperty Name="OBJECT_NAME" ColumnName="OBJECT_NAME" />
+                <ScalarProperty Name="PROCEDURE_NAME_" ColumnName="PROCEDURE_NAME_" />
+                <ScalarProperty Name="LINE" ColumnName="LINE" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENU">
+            <EntityTypeMapping TypeName="RDB5Model.MENU">
+              <MappingFragment StoreEntitySet="MENU">
+                <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+                <ScalarProperty Name="MENU_DESC" ColumnName="MENU_DESC" />
+                <ScalarProperty Name="MENU_TITLE" ColumnName="MENU_TITLE" />
+                <ScalarProperty Name="XML_MENU_DETAIL" ColumnName="XML_MENU_DETAIL" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCT_DETAIL">
+            <EntityTypeMapping TypeName="RDB5Model.PRODUCT_DETAIL">
+              <MappingFragment StoreEntitySet="PRODUCT_DETAIL">
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="PRODUCT_DESC" ColumnName="PRODUCT_DESC" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="PRODUCT_TYPE" ColumnName="PRODUCT_TYPE" />
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCT_IN_MENU">
+            <EntityTypeMapping TypeName="RDB5Model.PRODUCT_IN_MENU">
+              <MappingFragment StoreEntitySet="PRODUCT_IN_MENU">
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCT_ORDER">
+            <EntityTypeMapping TypeName="RDB5Model.PRODUCT_ORDER">
+              <MappingFragment StoreEntitySet="PRODUCT_ORDER">
+                <ScalarProperty Name="QTY_PO" ColumnName="QTY_PO" />
+                <ScalarProperty Name="PRODUCT_ORDER_ID" ColumnName="PRODUCT_ORDER_ID" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="SERVED" ColumnName="SERVED" />
+                <ScalarProperty Name="SERVED_AT" ColumnName="SERVED_AT" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RORDER">
+            <EntityTypeMapping TypeName="RDB5Model.RORDER">
+              <MappingFragment StoreEntitySet="RORDER">
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="TABLE_ACTIVITY_ID" ColumnName="TABLE_ACTIVITY_ID" />
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="ORDER_TOTAL" ColumnName="ORDER_TOTAL" />
+                <ScalarProperty Name="ORDER_SUBTOTAL" ColumnName="ORDER_SUBTOTAL" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RTABLES">
+            <EntityTypeMapping TypeName="RDB5Model.RTABLES">
+              <MappingFragment StoreEntitySet="RTABLES">
+                <ScalarProperty Name="TABLE_ID" ColumnName="TABLE_ID" />
+                <ScalarProperty Name="TABLE_CODE" ColumnName="TABLE_CODE" />
+                <ScalarProperty Name="LOCATION_DESC" ColumnName="LOCATION_DESC" />
+                <ScalarProperty Name="QTY_LIMIT" ColumnName="QTY_LIMIT" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SESSION_PREFERENCES">
+            <EntityTypeMapping TypeName="RDB5Model.SESSION_PREFERENCES">
+              <MappingFragment StoreEntitySet="SESSION_PREFERENCES">
+                <ScalarProperty Name="SESSION_ID" ColumnName="SESSION_ID" />
+                <ScalarProperty Name="SESSION_MENU_ID" ColumnName="SESSION_MENU_ID" />
+                <ScalarProperty Name="USER_ID_" ColumnName="USER_ID_" />
+                <ScalarProperty Name="UPDATED_ON" ColumnName="UPDATED_ON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STATUS_DETAIL">
+            <EntityTypeMapping TypeName="RDB5Model.STATUS_DETAIL">
+              <MappingFragment StoreEntitySet="STATUS_DETAIL">
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="STATUS_DESC" ColumnName="STATUS_DESC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TABLE_ACTIVITY">
+            <EntityTypeMapping TypeName="RDB5Model.TABLE_ACTIVITY">
+              <MappingFragment StoreEntitySet="TABLE_ACTIVITY">
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="TABLE_ACTIVITY_ID" ColumnName="TABLE_ACTIVITY_ID" />
+                <ScalarProperty Name="TABLE_ID" ColumnName="TABLE_ID" />
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="ORDER_TOTAL" ColumnName="ORDER_TOTAL" />
+                <ScalarProperty Name="ORDER_SUB_TOTAL" ColumnName="ORDER_SUB_TOTAL" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="RDB5Model.USERS">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="R_USER_ID" ColumnName="R_USER_ID" />
+                <ScalarProperty Name="R_USER_NAME" ColumnName="R_USER_NAME" />
+                <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
+                <ScalarProperty Name="USER_ROLE" ColumnName="USER_ROLE" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="INSERT_LOG_ERROR" FunctionName="RDB5Model.Store.INSERT_LOG_ERROR" />
+          <FunctionImportMapping FunctionImportName="PROC_GET_TABLES" FunctionName="RDB5Model.Store.PROC_GET_TABLES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDB5Model.PROC_GET_TABLES_Result">
+                <ScalarProperty Name="TABLE_ID" ColumnName="TABLE_ID" />
+                <ScalarProperty Name="QTY_LIMIT" ColumnName="QTY_LIMIT" />
+                <ScalarProperty Name="TABLE_STATUS" ColumnName="TABLE_STATUS" />
+                <ScalarProperty Name="EST_TIME" ColumnName="EST_TIME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="API_PROC_GET_TABLES" FunctionName="RDB5Model.Store.PROC_GET_TABLES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDB5Model.API_PROC_GET_TABLES_Result">
+                <ScalarProperty Name="TABLE_ID" ColumnName="TABLE_ID" />
+                <ScalarProperty Name="QTY_LIMIT" ColumnName="QTY_LIMIT" />
+                <ScalarProperty Name="TABLE_STATUS" ColumnName="TABLE_STATUS" />
+                <ScalarProperty Name="EST_TIME" ColumnName="EST_TIME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_MENU_BY_ID" FunctionName="RDB5Model.Store.GET_MENU_BY_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDB5Model.GET_MENU_BY_ID_Result">
+                <ScalarProperty Name="MENU_TITLE" ColumnName="MENU_TITLE" />
+                <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_MENU_DETAIL_BY_ID" FunctionName="RDB5Model.Store.GET_MENU_DETAIL_BY_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDB5Model.GET_MENU_DETAIL_BY_ID_Result">
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="PRODUCT_TYPE" ColumnName="PRODUCT_TYPE" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_DESC" ColumnName="PRODUCT_DESC" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_TABLE_ACTIVITY" FunctionName="RDB5Model.Store.GET_TABLE_ACTIVITY">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDB5Model.GET_TABLE_ACTIVITY_Result">
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="QTY" ColumnName="QTY" />
+                <ScalarProperty Name="START_TIME" ColumnName="START_TIME" />
+                <ScalarProperty Name="EST_TIME" ColumnName="EST_TIME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="API_GET_MENU_BY_ID" FunctionName="RDB5Model.Store.GET_MENU_BY_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDB5Model.GET_MENU_BY_ID_Result">
+                <ScalarProperty Name="MENU_TITLE" ColumnName="MENU_TITLE" />
+                <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_CHECK" FunctionName="RDB5Model.Store.GET_CHECK" />
+          <FunctionImportMapping FunctionImportName="CHANGE_TABLE_STATUS" FunctionName="RDB5Model.Store.CHANGE_TABLE_STATUS" />
+          <FunctionImportMapping FunctionImportName="GET_EMPLOYEES" FunctionName="RDB5Model.Store.GET_EMPLOYEES">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDB5Model.GET_EMPLOYEES_Result">
+                <ScalarProperty Name="R_USER_ID" ColumnName="R_USER_ID" />
+                <ScalarProperty Name="R_USER_NAME" ColumnName="R_USER_NAME" />
+                <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
+                <ScalarProperty Name="USER_ROLE" ColumnName="USER_ROLE" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_TABLE_ORDER" FunctionName="RDB5Model.Store.GET_TABLE_ORDER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDB5Model.GET_TABLE_ORDER_Result">
+                <ScalarProperty Name="QTY_PO" ColumnName="QTY_PO" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="ORDER_ID1" ColumnName="ORDER_ID1" />
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="SERVED" ColumnName="SERVED" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="NUEVO_PLATILLO" FunctionName="RDB5Model.Store.NUEVO_PLATILLO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RDB5Model.NUEVO_PLATILLO_Result">
+                <ScalarProperty Name="PRODUCT_CODE" ColumnName="PRODUCT_CODE" />
+                <ScalarProperty Name="PRODUCT_DESC" ColumnName="PRODUCT_DESC" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="PRODUCT_TYPE" ColumnName="PRODUCT_TYPE" />
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UPDATE_MENU_BY__ID" FunctionName="RDB5Model.Store.UPDATE_MENU_BY__ID" />
+          <FunctionImportMapping FunctionImportName="UPDATE_NEXT_VALUE" FunctionName="RDB5Model.Store.UPDATE_NEXT_VALUE" />
+          <FunctionImportMapping FunctionImportName="VALIDATE_LOGIN" FunctionName="RDB5Model.Store.VALIDATE_LOGIN" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
